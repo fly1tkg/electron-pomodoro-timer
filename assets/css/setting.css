@@ -1,0 +1,50 @@
+.content {
+  width: 400px;
+  height: 400px;
+  margin: auto;
+}
+
+.rest-time {
+  position: absolute;
+    width: 64px;
+    height: 64px;top: 100px;
+  width: inherit;
+}
+
+.rest-time > p {
+  font-size: 52px;
+  text-align: center;
+}
+
+.buttons {
+  position: absolute;
+  top: 240px;
+  margin-left: 92px;
+}
+
+.btn {
+  width: 72px;
+  height: 72px;
+  display: inline-block;
+}
+
+.start-btn {
+  background-image: url("../img/play-button.svg");
+}
+
+.pause-btn {
+  background-image: url("../img/pause.svg");
+}
+
+.stop-btn {
+  background-image: url("../img/stop.svg");
+}
+
+.setting-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 64px;
+  height: 64px;
+  background-image: url("../img/settings.svg");
+}

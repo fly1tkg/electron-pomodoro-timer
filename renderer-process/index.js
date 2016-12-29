@@ -2,6 +2,7 @@
 const BrowserWindow = require('electron').remote.BrowserWindow
 
 // Library
+const path = require('path')
 const EasyPieChart = require('easy-pie-chart')
 const moment = require('moment')
 
@@ -22,8 +23,11 @@ const STARTED = 0
 const PAUSED = 1
 const STOPPED = 2
 const FINISHED = 3
+const SETTING_MODAL_PATH = path.join(__dirname, 'setting.html')
 
 // variables
+let settingWindow
+
 var status = STOPPED
 var startTime
 var endTime
@@ -105,11 +109,25 @@ const stopTimer = function() {
   status = STOPPED
 }
 
+// 設定を開く
+const openSetting = function() {
+  if (settingWindow == null) {
+    settingWindow = new BrowserWindow({
+      width: 500,
+      height: 600
+    })
+    settingWindow.on('close', function() { settingWindow = null })
+    settingWindow.loadURL(SETTING_MODAL_PATH)
+    settingWindow.show()
+  }
+}
+
 // 初期化処理
 const init = function() {
   startBtn.addEventListener('click', startTimer)
   pauseBtn.addEventListener('click', pauseTimer)
   stopBtn.addEventListener('click', stopTimer)
+  settingBtn.addEventListener('click', openSetting)
 }
 
 init()
