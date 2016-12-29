@@ -59,6 +59,7 @@ const updateTimer = function() {
   if (percent > 100) {
     restTimeText.innerHTML = "00:00"
     clearInterval(intervalId)
+    new Notification('Pomodoro Timer', {body: 'Finished'});
     status = FINISHED
   } else {
     restTimeText.innerHTML = formattedResTime()
