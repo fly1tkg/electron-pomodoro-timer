@@ -9,6 +9,7 @@ const moment = require('moment')
 const startBtn = document.getElementById('start-btn')
 const pauseBtn = document.getElementById('pause-btn')
 const stopBtn = document.getElementById('stop-btn')
+const settingBtn = document.getElementById('setting-btn')
 const restTimeText = document.getElementById('rest-time-text')
 const pie = document.getElementById('pie')
 const chart = new EasyPieChart(pie, {
