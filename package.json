@@ -1,0 +1,26 @@
+{
+  "name": "pomodoro-timer",
+  "version": "0.0.0",
+  "description": "A minimal pomodoro timer",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/electron/electron-quick-start",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "GitHub",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^1.4.1"
+  },
+  "dependencies": {
+    "easy-pie-chart": "^2.1.7",
+    "moment": "^2.17.1"
+  }
+}

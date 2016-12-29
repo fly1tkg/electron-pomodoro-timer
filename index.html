@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Pomodoro Timer</title>
+    <link rel="stylesheet" href="assets/css/index.css">
+  </head>
+  <body>
+    <div class="content">
+      <div id="pie"></div>
+      <div class="rest-time">
+        <p id="rest-time-text">25:00</p>
+      </div>
+      <div class="buttons">
+        <div id="start-btn" class="btn start-btn"></div>
+        <div id="pause-btn" class="btn pause-btn"></div>
+        <div id="stop-btn" class="btn stop-btn"></div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    // You can also require other files to run in this process
+    require('./renderer.js')
+  </script>
+</html>
