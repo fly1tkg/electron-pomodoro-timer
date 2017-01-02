@@ -2,6 +2,7 @@
 const BrowserWindow = require('electron').remote.BrowserWindow
 
 // Library
+const settings = require('electron-settings')
 const path = require('path')
 const EasyPieChart = require('easy-pie-chart')
 const moment = require('moment')
@@ -23,16 +24,18 @@ const STARTED = 0
 const PAUSED = 1
 const STOPPED = 2
 const FINISHED = 3
-const SETTING_MODAL_PATH = path.join(__dirname, 'setting.html')
+const SETTING_MODAL_PATH = path.join('file://', __dirname, '../views/setting.html')
 
 // variables
 let settingWindow
+let timerSettings
 
 var status = STOPPED
 var startTime
 var endTime
 var intervalId
 var pausedRestTime
+var current = 0
 
 // functions
 
@@ -65,7 +68,9 @@ const updateTimer = function() {
     restTimeText.innerHTML = "00:00"
     clearInterval(intervalId)
     new Notification('Pomodoro Timer', {body: 'Finished'});
+    current++
     status = FINISHED
+    console.log(current)
   } else {
     restTimeText.innerHTML = formattedResTime()
   }
@@ -77,7 +82,7 @@ const startTimer = function() {
   switch (status) {
     case STOPPED:
     case FINISHED:
-      endTime = moment(startTime).add(25, 'minutes')
+      endTime = moment(startTime).add(timerSettings[current % timerSettings.length].value, 'minutes')
       // デバッグ用
       // endTime = moment(startTime).add(5, 'seconds')
       break;
@@ -122,8 +127,56 @@ const openSetting = function() {
   }
 }
 
+const loadSettings = function() {
+  // デフォルト値をセット
+  settings.defaults({
+    values: [
+      {
+        label: 'Task',
+        value: 25
+      },
+      {
+        label: 'Break',
+        value: 5
+      },
+      {
+        label: 'Task',
+        value: 25
+      },
+      {
+        label: 'Break',
+        value: 5
+      },
+      {
+        label: 'Task',
+        value: 25
+      },
+      {
+        label: 'Break',
+        value: 5
+      },
+      {
+        label: 'Task',
+        value: 25
+      },
+      {
+        label: 'Long Break',
+        value: 20
+      }
+    ]
+  })
+
+  // 設定値をロード
+  settings.get('values')
+  .then(function(values) {
+    timerSettings = values
+  })
+}
+
 // 初期化処理
 const init = function() {
+  loadSettings()
+  restTimeText.innerHTML = "00:00"
   startBtn.addEventListener('click', startTimer)
   pauseBtn.addEventListener('click', pauseTimer)
   stopBtn.addEventListener('click', stopTimer)

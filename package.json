@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "easy-pie-chart": "^2.1.7",
+    "electron-settings": "^2.2.2",
     "moment": "^2.17.1"
   }
 }
